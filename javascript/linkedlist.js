@@ -120,5 +120,43 @@ class Node {
           if (temp.data === val) return true;
           return false;
       }
+
+      /**
+       * removes method remove the given element from the list and returns the length of the list.
+       */
+      remove(val) {
+          /**
+           * if the list is empty then return 0;
+           */
+          if (this.length === 0) return this.length;
+          /**
+           * if there is only head node exists.
+           */
+          if (this.head.data === val) {
+              delete this.head;
+              this.length--;
+              return this.length;
+          }
+          /**
+           * else itrate through the list untill we found the given element then return the updated length of the list.
+           */
+          var prev = this.head;
+          var temp = this.head.next;
+          while (temp.next) {
+              if (temp.data === val) {
+                prev.next = temp.next;
+                this.length--;
+                return this.length;
+              }
+              prev = prev.next;
+              temp = temp.next;
+          }
+          if (temp.data === val) {
+              prev.next = null;
+              this.tail = prev
+              this.length--;
+          }
+          return this.length;
+      }
  }
 
